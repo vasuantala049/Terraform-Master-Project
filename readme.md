@@ -16,7 +16,7 @@ Each environment has its own remote state, networking, security, compute, databa
 
 ## 🏗 Architecture
 
-### Core Components
+## Core Components
 
 - Custom VPC (Multi-AZ)
 - Public & Private Subnets
@@ -55,8 +55,7 @@ Each environment:
 
 ## 🚀 How to Deploy
 
-### 1️⃣ Navigate to environment
-
+1️⃣ Navigate to environment
 ```bash
 cd environments/dev
 2️⃣ Initialize Terraform

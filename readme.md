@@ -4,18 +4,31 @@ This project demonstrates a modular AWS infrastructure built using Terraform. It
 
 The infrastructure includes:
    Custom VPC with public and private subnets across multiple Availability Zones
+   
    Internet Gateway and NAT Gateway
+   
    Private EC2 instances
+   
    Amazon RDS (MySQL) deployed in private subnets
+   
    AWS Secrets Manager for database credentials
+   
    AWS KMS for encryption
+   
    Amazon S3 with versioning and encryption
+   
    AWS CloudTrail for auditing
+   
    IAM roles and security groups
+   
    Each environment:
+   
    Has its own Terraform state file stored in S3
+   
    Uses environment-specific variables
+   
    Is fully isolated from other environments
+   
    Can be deployed or destroyed independently
 
 

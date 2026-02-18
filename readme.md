@@ -1,144 +1,67 @@
-# Multi-Environment AWS Infrastructure with Terraform
+Multi-Environment AWS Infrastructure with Terraform
 
-## 📌 Overview
+This project demonstrates a modular AWS infrastructure built using Terraform. It supports three isolated environments: dev, staging, and prod. Each environment can be deployed independently and maintains its own remote state.
 
-This project demonstrates a production-style, modular AWS infrastructure built using **Terraform (Infrastructure as Code)**.
+The infrastructure includes:
 
-It supports three isolated environments:
+Custom VPC with public and private subnets across multiple Availability Zones
 
-- Dev
-- Staging
-- Prod
+Internet Gateway and NAT Gateway
 
-Each environment has its own remote state, networking, security, compute, database, and storage layers.
+Private EC2 instances
 
----
+Amazon RDS (MySQL) deployed in private subnets
 
-## 🏗 Architecture
+AWS Secrets Manager for database credentials
 
-### Core Components
+AWS KMS for encryption
 
-- Custom VPC (Multi-AZ)
-- Public & Private Subnets
-- Internet Gateway + NAT Gateway
-- EC2 Instances (Private)
-- Amazon RDS (MySQL) – Private
-- AWS KMS (Encryption)
-- AWS Secrets Manager (DB Credentials)
-- Amazon S3 (Encrypted & Versioned Storage)
-- AWS CloudTrail (Audit Logging)
-- IAM Roles & Security Groups
-- Remote Terraform State (S3 with native locking)
+Amazon S3 with versioning and encryption
 
----
+AWS CloudTrail for auditing
 
-## 📂 Project Structure
-
-terraform-multi-env-infra/
-│
-├── backend/ # Backend S3 bucket setup
-│
-├── modules/
-│ ├── vpc/
-│ ├── security/
-│ ├── compute/
-│ ├── database/
-│ └── storage/
-│
-└── environments/
-├── dev/
-├── staging/
-└── prod/
-
-yaml
-Copy code
-
----
-
-## 🔐 Security Features
-
-- Private EC2 instances (no public IP)
-- RDS deployed in private subnets
-- Least-privilege Security Groups
-- Secrets stored in AWS Secrets Manager
-- Encryption at rest using AWS KMS
-- S3 versioning + encryption enabled
-- CloudTrail logging enabled
-
----
-
-## 🌎 Multi-Environment Strategy
+IAM roles and security groups
 
 Each environment:
 
-- Has its own Terraform state file
-- Uses environment-specific variables
-- Is completely isolated from other environments
-- Can be deployed independently
+Has its own Terraform state file stored in S3
 
----
+Uses environment-specific variables
 
-## 🚀 How to Deploy
+Is fully isolated from other environments
 
-### 1️⃣ Navigate to environment
+Can be deployed or destroyed independently
 
-```bash
-cd environments/dev
-2️⃣ Initialize Terraform
-bash
-Copy code
-terraform init
-3️⃣ Plan
-bash
-Copy code
-terraform plan
-4️⃣ Apply
-bash
-Copy code
-terraform apply
-🧹 Destroy Environment
-bash
-Copy code
+Project structure:
+
+terraform-multi-env-infra
+modules/
+ vpc/
+ security/
+ compute/
+ database/
+ storage/
+environments/
+ dev/
+ staging/
+ prod/
+
+To deploy an environment:
+
+1. Navigate to the environment folder
+   cd environments/dev
+
+2. Initialize Terraform
+   terraform init
+
+3. Review the plan
+   terraform plan
+
+4. Apply the configuration
+   terraform apply
+
+To destroy the environment:
+
 terraform destroy
-📦 Terraform Backend
-Remote state is stored in:
 
-Amazon S3
-
-Native S3 state locking enabled
-
-Separate state file per environment
-
-🛠 Technologies Used
-Terraform
-
-AWS VPC
-
-Amazon EC2
-
-Amazon RDS (MySQL)
-
-Amazon S3
-
-AWS KMS
-
-AWS Secrets Manager
-
-AWS CloudTrail
-
-IAM
-
-📈 Learning Objectives
-This project demonstrates:
-
-Terraform module design
-
-Dependency graph management
-
-Multi-environment infrastructure patterns
-
-Secure secret handling
-
-Remote state best practices
-
-Production-style AWS architecture
+This project focuses on clean module design, secure secret handling, remote state management, and multi-environment architecture using Infrastructure as Code principles.
